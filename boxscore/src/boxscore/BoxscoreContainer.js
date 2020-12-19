@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import useFeed from "./useFeed";
 
 const BoxscoreContainer = () => {
@@ -11,8 +10,8 @@ const BoxscoreContainer = () => {
 
     return (
         <div>
-            {nbaFeed}
-            {mlbFeed}
+            {JSON.stringify(nbaFeed)}
+            {JSON.stringify(mlbFeed)}
         </div>
     )
 }

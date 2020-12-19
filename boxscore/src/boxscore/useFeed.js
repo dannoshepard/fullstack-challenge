@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {axiosInstance} from "../App";
 
 const MLB_FEED = "/feed/mlb";
 const NBA_FEED = "/feed/nba";
@@ -10,7 +10,7 @@ const useFeed = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const feed = await axios.get(MLB_FEED)
+            const feed = await axiosInstance.get(MLB_FEED)
             setMlbFeed(feed);
         };
         fetchData();
@@ -18,7 +18,7 @@ const useFeed = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const feed = await axios.get(NBA_FEED)
+            const feed = await axiosInstance.get(NBA_FEED)
             setNbaFeed(feed);
         };
         fetchData();

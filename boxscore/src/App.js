@@ -1,6 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from "axios";
 import BoxscoreContainer from './boxscore/BoxscoreContainer';
+
+export const axiosInstance = axios.create({
+  baseURL: "/api"
+});
 
 function App() {
   return (

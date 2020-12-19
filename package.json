@@ -1,0 +1,23 @@
+{
+  "name": "fullstack-challenge",
+  "version": "1.0.0",
+  "description": "The Boxscore is the goto widget on any sports site to get quick information about a game.  ESPN, Fox Sports, theScore, and many others have solutions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently --kill-others \"cd boxscore && npm start\" \"cd api && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dannoshepard/fullstack-challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dannoshepard/fullstack-challenge/issues"
+  },
+  "homepage": "https://github.com/dannoshepard/fullstack-challenge#readme",
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}
