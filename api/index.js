@@ -1,19 +1,21 @@
 const express = require('express');
 const { log } = require("./services/log");
-const { feedEndpoints } = require("./endpoints/feeds")
+const feedRoutes = require("./routes/feeds")
+
+const port = 8000;
 
 const app = express();
-const port = 8000;
 
 
 app.get('/', (req, res) => {
-  res.send('Hello from Boxscore API!');
+    res.send('Hello from Boxscore API!');
 });
 
-app.listen(port, () => {
-    // register endpoints
-    feedEndpoints(app)
+// register routes
+app.use("/api", feedRoutes)
 
+// start server
+app.listen(port, () => {
     log.info(`Boxscore API listening on port ${port}!`)
 });
 

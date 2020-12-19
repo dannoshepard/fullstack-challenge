@@ -12,9 +12,17 @@ const EXPIRES_IN_MINUTES = 15;
 async function getFeed(feed) {
     const cachedFeed = cache.get(feed);
     if (_.isEmpty(cachedFeed) || expired(cachedFeed.lastUpdated) ) {
-        log.info("caching new feed value...");
+        log.info(`caching new feed value from url... ${feed}`);
+        
+        let latestFeed = {};
+        try {
+            const response = await axios.get(feed);
+            latestFeed = await response.data;
+        } catch (e) {
+            log.error(e);
+            return latestFeed;
+        }
 
-        const latestFeed = await axios.get(feed);
         const cacheValue = {
             ...latestFeed,
             lastUpdated: Date.now()
