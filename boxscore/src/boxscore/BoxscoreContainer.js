@@ -1,17 +1,38 @@
 import React from "react";
-import useFeed from "./useFeed";
+import useFeed, {NBA} from "./useFeed";
+import { BoxscoreHeader } from "./BoxscoreHeader";
+import { BoxscoreOverview } from "./BoxscoreOverview";
 
 const BoxscoreContainer = () => {
 
     const {
-        nbaFeed,
-        mlbFeed
-    } = useFeed()
+        eventInformation,
+        league,
+        homeTeam,
+        awayTeam,
+        homeStats,
+        awayStats,
+        homePeriodScores,
+        awayPeriodScores,
+        homeTotals,
+        awayTotals
+    } = useFeed(NBA)
+
+    const overviewProps = {
+        homeTeam,
+        awayTeam,
+        homeStats,
+        awayStats,
+        homePeriodScores,
+        awayPeriodScores,
+        homeTotals,
+        awayTotals
+    }
 
     return (
-        <div className="test">
-            {JSON.stringify(nbaFeed)}
-            {JSON.stringify(mlbFeed)}
+        <div className="boxscore__container">
+            <BoxscoreHeader eventInformation={eventInformation} league={league} /> 
+            <BoxscoreOverview {...overviewProps} />
         </div>
     )
 }

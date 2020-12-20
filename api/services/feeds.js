@@ -1,6 +1,7 @@
 const axios = require('axios');
 const _ = require('lodash');
 const cache = require('./cache');
+const camelCaseKeys = require("camelcase-keys");
 const { log } = require("./log");
 
 
@@ -17,7 +18,7 @@ async function getFeed(feed) {
         let latestFeed = {};
         try {
             const response = await axios.get(feed);
-            latestFeed = await response.data;
+            latestFeed = camelCaseKeys(response.data, {deep: true});
         } catch (e) {
             log.error(e);
             return latestFeed;

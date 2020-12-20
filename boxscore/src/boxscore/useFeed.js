@@ -1,33 +1,38 @@
 import {useEffect, useState} from "react";
 import {axiosInstance} from "../App";
 
+// leagues
+export const NBA = "NBA";
+export const MLB = "MLB";
+
 const MLB_FEED = "/feed/mlb";
 const NBA_FEED = "/feed/nba";
 
-const useFeed = () => {
-    const [mlbFeed, setMlbFeed] = useState({});
-    const [nbaFeed, setNbaFeed] = useState({});
+const useFeed = (league) => {
+    const [feed, setFeed] = useState({});
 
     useEffect(() => {
-        async function fetchData() {
-            const feed = await axiosInstance.get(MLB_FEED)
-            setMlbFeed(feed);
+        async function fetchData(url) {
+            const result = await axiosInstance.get(url)
+            setFeed(result.data);
         };
-        fetchData();
-    }, [])
 
-    useEffect(() => {
-        async function fetchData() {
-            const feed = await axiosInstance.get(NBA_FEED)
-            setNbaFeed(feed);
-        };
-        fetchData();
-    }, [])
+        switch (league) {
+            case NBA:
+                fetchData(NBA_FEED);
+                break;
+            case MLB:
+                fetchData(MLB_FEED);
+                break
+            default:
+                // do nothing
+        }
+
+    }, [league])
 
 
     return {
-        mlbFeed,
-        nbaFeed
+        ...feed
     }
 };
 
