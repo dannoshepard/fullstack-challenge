@@ -9,7 +9,7 @@ const BoxscoreContainer = () => {
     } = useFeed()
 
     return (
-        <div>
+        <div className="test">
             {JSON.stringify(nbaFeed)}
             {JSON.stringify(mlbFeed)}
         </div>
