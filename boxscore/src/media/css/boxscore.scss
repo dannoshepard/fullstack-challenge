@@ -1,15 +1,48 @@
 .boxscore {
 
     &__container {
-        margin: auto;
         display: flex;
         flex-direction: column;
-        width: 70%;
+        margin: auto;
+        width: 50%;
     }
     
     &__header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+    }
+
+    &__overview {
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+        
+        @at-root .seperator {
+            padding: 24px
+        }
+
+        &__team-score {
+            margin: 16px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+
+            
+        }
+    }
+
+    &__period {
+        display: flex;
+        flex-direction: column;
+        padding: 4px;
+        text-align: center;
+
+        &__container {
+            display: flex;
+            flex-direction: row;
+            margin: auto;
+            
+        }
     }
 }
