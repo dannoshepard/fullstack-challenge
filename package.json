@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently --kill-others \"cd boxscore && npm start\" \"cd api && npm start\""
+    "start": "concurrently --kill-others \"cd boxscore && npm run-script cold-start\" \"cd api && npm run-script cold-start\"",
+    "warm-start": "concurrently --kill-others \"cd boxscore && npm start\" \"cd api && npm start\""
   },
   "repository": {
     "type": "git",
