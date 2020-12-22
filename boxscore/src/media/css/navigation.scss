@@ -1,0 +1,30 @@
+.navigation {
+    &__container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &__left {
+            display: flex;
+            flex-direction: row;
+            margin-left: 16px;
+
+            img {
+                padding-top: 14px;
+                margin-right: 8px;
+                height: 25%;
+                width: auto;
+            }
+        }
+
+        &__right {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-right: 16px;
+            align-content: right;
+            padding: 24px;
+            width: 10%;
+        }
+    }
+}

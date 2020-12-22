@@ -1,22 +1,25 @@
 import React from "react";
+import PropTypes from "prop-types";
 import _ from "lodash";
-import useFeed, {NBA, MLB} from "./useFeed";
+import useFeed from "./useFeed";
 import { BoxscoreHeader } from "./BoxscoreHeader";
 import { BoxscoreOverview } from "./BoxscoreOverview";
 import { BoxscorePeriodDetails } from "./BoxscorePeriodDetails";
 import { BoxscoreDetailsContainer } from "./BoxscoreDetails";
 
-const BoxscoreContainer = () => {
+const BoxscoreContainer = ({league}) => {
 
-    const feed = useFeed(MLB);
+    console.log("rendering boxscore container")
+    const feed = useFeed(league);
 
     if (_.isEmpty(feed)) {
         return null;
     }
 
+    console.log("feed for ", league, feed)
+
     const {
         eventInformation,
-        league,
         homeTeam,
         awayTeam,
         homePeriodScores,
@@ -54,6 +57,8 @@ const BoxscoreContainer = () => {
     )
 }
 
-BoxscoreContainer.propTypes = {}
+BoxscoreContainer.propTypes = {
+    league: PropTypes.string.isRequired
+}
 
 export default BoxscoreContainer;

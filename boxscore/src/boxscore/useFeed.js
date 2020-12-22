@@ -12,6 +12,11 @@ const useFeed = (league) => {
     const [feed, setFeed] = useState({});
 
     useEffect(() => {
+        console.log("gettin feed for ", league)
+
+        // clear state
+        setFeed({});
+
         async function fetchData(url) {
             const result = await axiosInstance.get(url)
             setFeed(result.data);

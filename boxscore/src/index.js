@@ -4,8 +4,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 // import scss/css
-import "./media/css/app.scss"
-import "./media/css/boxscore.scss"
+import "./media/css/app.scss";
+import "./media/css/navigation.scss";
+import "./media/css/boxscore.scss";
 
 
 ReactDOM.render(
