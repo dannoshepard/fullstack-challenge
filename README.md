@@ -1,3 +1,9 @@
+# Instructions
+Thanks for checking out my sumbission.
+
+To run this application, cd into the root of the application and run '$ npm start'
+This will spin up the node api and webpack dev server. 
+
 # The Boxscore Challenge
 The Boxscore is the goto widget on any sports site to get quick information about a game.  ESPN, Fox Sports, theScore, and many others have solutions.
 
