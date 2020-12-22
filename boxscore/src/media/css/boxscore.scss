@@ -27,8 +27,6 @@
             display: flex;
             flex-direction: column;
             text-align: center;
-
-            
         }
     }
 
@@ -43,6 +41,47 @@
             flex-direction: row;
             margin: auto;
             
+        }
+
+        @at-root .border-left {
+            border-left: 1px solid black;
+        }
+    }
+
+    &__details {
+        &__container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 8px;
+
+            &__line {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                
+                @at-root .name-column {
+                    width: 70%;
+                }
+                @at-root .results-column {
+                    width: 30%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+
+                    &__header {
+                        width: 30%;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        padding: 16px 0;
+                    }
+                    
+
+                    @at-root .item {
+                        width: 100%;
+                    }
+                }
+            }
         }
     }
 }

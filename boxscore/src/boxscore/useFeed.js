@@ -27,13 +27,9 @@ const useFeed = (league) => {
             default:
                 // do nothing
         }
-
     }, [league])
-
-
-    return {
-        ...feed
-    }
+   
+    return feed
 };
 
 export default useFeed

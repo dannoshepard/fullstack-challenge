@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import { sumTotals } from "./utils";
+import { MLB, NBA } from "./useFeed";
 
 const Period = ({
     index,
@@ -17,21 +18,65 @@ const Period = ({
     )
 }
 
+const MLBTotals = ({
+    homeTotal,
+    awayTotal,
+    homeHits,
+    awayHits,
+    homeErrors,
+    awayErrors
+}) => {
+    return (
+    <>
+        <div className="border-left">
+            <Period index="R" homeScore={homeTotal} awayScore={awayTotal} />
+        </div>
+        <Period index="H" homeScore={homeHits} awayScore={awayHits} />
+        <Period index="E" homeScore={homeErrors} awayScore={awayErrors} />
+    </>
+)}
+
+MLBTotals.propTypes = {
+    homeTotal: PropTypes.number.isRequired,
+    awayTotal: PropTypes.number.isRequired,
+    homeHits: PropTypes.number.isRequired,
+    awayHits: PropTypes.number.isRequired,
+    homeErrors: PropTypes.number.isRequired,
+    awayErrors: PropTypes.number.isRequired
+}
+
+
+const NBATotals = ({
+    homeTotal,
+    awayTotal,
+}) => <div className="border-left">
+        <Period index="T" homeScore={homeTotal} awayScore={awayTotal} />    
+    </div>
+
+NBATotals.propTypes = {
+    homeTotal: PropTypes.number.isRequired,
+    awayTotal: PropTypes.number.isRequired
+}
+
 Period.propTypes = {
-    index: PropTypes.number.isRequired,
+    index: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
+      ]).isRequired,
     homeScore: PropTypes.number.isRequired,
     awayScore: PropTypes.number.isRequired
 };
 
 
 export const BoxscorePeriodDetails = ({
+    league,
     homePeriodScores,
     awayPeriodScores,
-    homeStats,
-    awayStats
+    homeBatterTotals,
+    awayBatterTotals,
+    homeErrors,
+    awayErrors
 }) => {
-
-    console.log(homeStats, awayStats)
 
     const zippedScores = useMemo(() => {
         return _.zip(homePeriodScores, awayPeriodScores);
@@ -45,6 +90,26 @@ export const BoxscorePeriodDetails = ({
         return sumTotals(awayPeriodScores);
     }, [awayPeriodScores]);
 
+    const totals = useMemo(() => {
+        switch (league) {
+            case MLB:
+                const mlbTotalsProps = {
+                    homeTotal, 
+                    awayTotal, 
+                    homeErrors, 
+                    awayErrors,
+                    homeHits: homeBatterTotals.hits, 
+                    awayHits: awayBatterTotals.hits, 
+                }
+                return <MLBTotals {...mlbTotalsProps} />
+            case NBA:
+                return <NBATotals homeTotal={homeTotal} awayTotal={awayTotal} />
+            default:
+                return null;
+
+        }
+    }, [league, homeTotal, awayTotal, homeBatterTotals, awayBatterTotals, homeErrors, awayErrors])
+
     return (
         <div className="boxscore__period__container">
             {zippedScores.map((scores, index) => (
@@ -54,7 +119,7 @@ export const BoxscorePeriodDetails = ({
                     awayScore={scores[1]} 
                 />
             ))}
-            <Period index="T" homeScore={homeTotal} awayScore={awayTotal} />
+            {totals}
         </div>
     )
 };

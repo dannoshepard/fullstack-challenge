@@ -4,10 +4,11 @@ import useFeed, {NBA, MLB} from "./useFeed";
 import { BoxscoreHeader } from "./BoxscoreHeader";
 import { BoxscoreOverview } from "./BoxscoreOverview";
 import { BoxscorePeriodDetails } from "./BoxscorePeriodDetails";
+import { BoxscoreDetailsContainer } from "./BoxscoreDetails";
 
 const BoxscoreContainer = () => {
 
-    const feed = useFeed(NBA);
+    const feed = useFeed(MLB);
 
     if (_.isEmpty(feed)) {
         return null;
@@ -18,10 +19,12 @@ const BoxscoreContainer = () => {
         league,
         homeTeam,
         awayTeam,
-        homeStats,
-        awayStats,
         homePeriodScores,
         awayPeriodScores,
+        homeBatterTotals,
+        awayBatterTotals,
+        homeErrors,
+        awayErrors
     } = feed;
 
     const overviewProps = {
@@ -32,10 +35,13 @@ const BoxscoreContainer = () => {
     }
 
     const periodDetailsProps = {
+        league,
         homePeriodScores,
         awayPeriodScores,
-        homeStats,
-        awayStats
+        homeBatterTotals,
+        awayBatterTotals,
+        homeErrors,
+        awayErrors
     }
 
     return (
@@ -43,6 +49,7 @@ const BoxscoreContainer = () => {
             <BoxscoreHeader eventInformation={eventInformation} league={league} /> 
             <BoxscoreOverview {...overviewProps} />
             <BoxscorePeriodDetails {...periodDetailsProps} />
+            <BoxscoreDetailsContainer feed={feed} />
         </div>
     )
 }
